@@ -23,8 +23,6 @@ EXPLAIN SELECT * from employees where employees.gender='M'
 
 返回的结果如下：
 
-![](http://jeremyimage.qiniudn.com/hexo_mysqlzhixingjihua.png)
-
 #### 这些结果都代表什么？
 
 - id是一组数字，表示查询中执行select子句或操作表的顺序。

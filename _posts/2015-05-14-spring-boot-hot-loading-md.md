@@ -19,7 +19,7 @@ tags:
 
 ### 通过Spring Loaded实现热加载
 - 项目地址：[spring loaded](https://github.com/spring-projects/spring-loaded)
-- 下载[springloaded-1.2.1.RELEASE.jar](http://search.maven.org/remotecontent?filepath=org/springframework/springloaded/1.2.1.RELEASE/springloaded-1.2.1.RELEASE.jar)
+- 下载[springloaded-1.2.1.RELEASE.jar](https://search.maven.org/remotecontent?filepath=org/springframework/springloaded/1.2.1.RELEASE/springloaded-1.2.1.RELEASE.jar)
 - 右键Application.java-->Run as-->Run Configurations
 - 在Arguments页签中的VM arguments项加入如下参数，其中E:\java\springloaded-1.2.1.RELEASE.jar指向springloaded-1.2.1.RELEASE.jar的保存路径
 
