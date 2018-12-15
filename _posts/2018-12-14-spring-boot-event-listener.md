@@ -11,12 +11,6 @@ tags:
     - Spring Boot
 ---
 
-Web网站如何实现单点登录，账户只能在一处登录。
-
-首先，我们要判断服务器session集合中是否已经存在了一个session，记录该用户的登录信息。
-我们可以通过HttpSessionListener监听器和全局静态map自己实现一个SessionContext。
-<!--more-->
-
 ### 方式一: 手工向ApplicationContext中添加监听器
 
 定义事件
