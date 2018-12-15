@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot 学习起步 六、SpringApplication - 谷梁祁承</title>
+    <meta name="author"  content="辛保健">
+    <meta name="description" content="Spring Boot 学习起步 六、SpringApplication">
+    <meta name="keywords"  content="技术, Java, Spring Boot">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Spring Boot 学习起步 六、SpringApplication - 谷梁祁承">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2015/05/15/spring-application-md.html">
+    <meta property="og:description" content="眼中总有光芒，活成想要的模样。">
+    <meta property="og:site_name" content="谷梁祁承">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#%E6%8A%80%E6%9C%AF" class="post-tag">技术</a>
+          
+            <a href="http://localhost:4000/tags#Java" class="post-tag">Java</a>
+          
+            <a href="http://localhost:4000/tags#Spring%20Boot" class="post-tag">Spring Boot</a>
+          
+        
+      </div>
+      <h1>Spring Boot 学习起步 六、SpringApplication</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>Baojian</span>
+        <time class="post-meta-item" datetime="15-05-15"><i class="iconfont icon-date"></i>15 May 2015</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+    <h2 class="post-subtitle"> "Spring Boot"</h2>
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>SpringApplication</p>
+</blockquote>
+
+<p>spring boot通过调用SpringApplication.run启动应用.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Application.java</span>
+<span class="kn">package</span> <span class="n">demo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ApplicationConfig</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+<!--more-->
+<p>runa方法可以接受多个Java Configuration(@Configuration)作为入参</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//AppConfig.java</span>
+<span class="kn">package</span> <span class="n">demo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.filter.CharacterEncodingFilter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.DispatcherServlet</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${characterEncoding}"</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">characterEncoding</span><span class="o">;</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">DispatcherServlet</span> <span class="nf">dispatcherServlet</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">DispatcherServlet</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">CharacterEncodingFilter</span> <span class="nf">characterEncodingFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CharacterEncodingFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CharacterEncodingFilter</span><span class="o">();</span>
+        <span class="n">filter</span><span class="o">.</span><span class="na">setEncoding</span><span class="o">(</span><span class="n">characterEncoding</span><span class="o">);</span>
+        <span class="n">filter</span><span class="o">.</span><span class="na">setForceEncoding</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">filter</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#application.properties
+</span><span class="py">characterEncoding</span> <span class="p">=</span> <span class="s">UTF-8</span>
+</code></pre></div></div>
+<ul>
+  <li>上面的AppConfig声明了2个bean,一个DispatcherServlet,一个CharacterEncodingFilter,characterEncodingFilter从配置文件中读取编码作为参数;</li>
+  <li>实际开发中可以根据项目需要定义任意多个bean,方法名会作为beanname,返回类型作为beantype;</li>
+  <li>也可以通过如下方式对bean进行定制:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"xxx"</span><span class="o">)</span>
+  <span class="nd">@Scope</span><span class="o">(</span><span class="n">ConfigurableBeanFactory</span><span class="o">.</span><span class="na">SCOPE_PROTOTYPE</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">foo</span><span class="o">(){</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>定制banner
+可以通过如下方式禁用banner的显示
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">SpringApplication</span> <span class="n">app</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpringApplication</span><span class="o">(</span><span class="n">MySpringConfiguration</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="n">app</span><span class="o">.</span><span class="na">setShowBanner</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+<span class="n">app</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <p>也可以通过在classpath下添加banner.txt或者在配置文件中指定 banner.location,实现banner的定制.</p>
+  </li>
+</ul>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">辛保健</div>
+      <div class="bio">
+        <p>后端开发者，热爱技术，简单乐观爱创造</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/xinbaojian" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2015/05/15/configuration.html" class="read-next-link"></a>
+        <section>
+          <span>Spring Boot 学习起步 七、Configuration配置</span>
+          <p>  “Yeah It’s on. ”</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2015/05/15/setting-logging-md.html" class="read-next-link"></a>
+          <section>
+            <span>Spring Boot 学习起步 五、日志处理</span>
+            <p>  日志处理</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>谷梁祁承 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/xinbaojian">xinbaojian</a></section>
+  <section><a style="font-size:0.8rem;font-weight:100; text-decoration: none;" href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备18005655号-1</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

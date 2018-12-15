@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot 学习起步 三、一些设置 - 谷梁祁承</title>
+    <meta name="author"  content="辛保健">
+    <meta name="description" content="Spring Boot 学习起步 三、一些设置">
+    <meta name="keywords"  content="技术, Java, Spring Boot">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Spring Boot 学习起步 三、一些设置 - 谷梁祁承">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2015/05/14/some-setting-md.html">
+    <meta property="og:description" content="眼中总有光芒，活成想要的模样。">
+    <meta property="og:site_name" content="谷梁祁承">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#%E6%8A%80%E6%9C%AF" class="post-tag">技术</a>
+          
+            <a href="http://localhost:4000/tags#Java" class="post-tag">Java</a>
+          
+            <a href="http://localhost:4000/tags#Spring%20Boot" class="post-tag">Spring Boot</a>
+          
+        
+      </div>
+      <h1>Spring Boot 学习起步 三、一些设置</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>Baojian</span>
+        <time class="post-meta-item" datetime="15-05-14"><i class="iconfont icon-date"></i>14 May 2015</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+    <h2 class="post-subtitle"> "Spring Boot"</h2>
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>一些设置</p>
+</blockquote>
+
+<h4 id="一指定启动类">一、指定启动类</h4>
+<p>在之前的demo项目中任意创建一个类,并添加main函数,如下所示:</p>
+
+<pre><code class="language-Java">package demo;
+public class Foo {
+    public static void main(String[] args) {
+    }
+}
+</code></pre>
+
+<p>然后用maven对项目进行打包</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean package
+</code></pre></div></div>
+
+<p>会提示如下错误:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.2.3.RELEASE:repackage (default) on project com.baojian: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:1.2.3.RELEASE:repac
+kage failed: Unable to find a single main class from the following candidates [com.baojian.App, com.baojian.Foo] -&gt; [Help 1]
+</code></pre></div></div>
+
+<p>默认情况下,spring boot会查找jar包下包含main函数的类作为程序的入口; 如果找到多个,则会报错,此时可以通过在pom.xml指定start class,从而明确告诉spring boot项目的启动类.
+<!--more--></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+    <span class="nt">&lt;start-class&gt;</span>demo.Application<span class="nt">&lt;/start-class&gt;</span>
+    <span class="nt">&lt;java.version&gt;</span>1.7<span class="nt">&lt;/java.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+
+<span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+
+<p>这样就可以打包成功了，找到打包的jar包，执行以下命令就把这个Spring Boot的Web项目跑起来了</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -jar com.baojian-1.0-SNAPSHOT.jar
+</code></pre></div></div>
+
+<h4 id="二配置文件">二、配置文件</h4>
+
+<ul>
+  <li>几乎每个项目都有一些配置项,诸如数据源,缓存,系统参数,第三方接口…</li>
+  <li>不同的环境下配置都是不一样的,很多时候开发是一套配置,测试是另一套,生产又是一套,甚至出于安全考虑,配置项不是对所有人都可见的.</li>
+  <li>如果采用单一的配置文件,在不同环境中切换就需要频繁的修改,很多工作中坑爹的问题都出自这里.</li>
+</ul>
+
+<p>Spring 是如何解决这些问题呢？</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>application.properties
+</code></pre></div></div>
+
+<p>默认情况下,spring boot从application.properties中读取配置项</p>
+
+<p>修改demo项目中resources目录下的application.properties,添加如下配置项:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app config
+app.name=demo
+app.code=123456
+</code></pre></div></div>
+
+<p>代码中可以通过<code class="highlighter-rouge">@Value("${key}")</code>的方式获取对应的值</p>
+
+<pre><code class="language-Java">package com.baojian;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 用户测试读取 application.properties 文件
+ *
+ * “@EnableAutoConfiguration”注解的作用在于让 Spring Boot 根据应用所声明的依赖来对 Spring 框架进行自动配置，这就减少了开发人员的工作量。
+ * “@RestController”和”@RequestMapping”由 Spring MVC 提供，用来创建 REST 服务。这两个注解和 Spring Boot 本身并没有关系。
+ * “@ResponseBody”将内容或对象作为 HTTP 响应正文返回，并调用适合HttpMessageConverter的Adapter转换对象，写入输出流。
+ * Created by xinbaojian on 2015/5/14.
+ */
+@RestController
+@EnableAutoConfiguration
+public class App extends SpringBootServletInitializer{
+
+    @Value("${user.name}")
+    private String name;
+
+    @Value("${user.age}")
+    private String age;
+
+    @RequestMapping("/")
+    public String hello(){
+        return "Hello world!";
+    }
+
+    @RequestMapping("/info")
+    public String userInfo(){
+        String info = String.format("姓名：%s 年龄:%s",name,age);
+        System.out.println("info:"+info);
+        return info;
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class,args);
+    }
+}
+</code></pre>
+<p>访问<a href="http://localhost:8080/info">http://localhost:8080/info</a> 即可正确看到 <code class="highlighter-rouge">姓名：xinbaojian 年龄:18</code> 输出</p>
+
+<h4 id="通过外部文件设置配置项">通过外部文件设置配置项</h4>
+
+<p>在应用中管理配置并不是一个容易的任务，尤其是在应用需要部署到多个环境中时。通常会需要为每个环境提供一个对应的属性文件，用来配置各自的数据库连接信息、服务器信息和第三方服务账号等。通常的应用部署会包含开发、测试和生产等若干个环境。不同的环境之间的配置存在覆盖关系。测试环境中的配置会覆盖开发环境，而生产环境中的配置会覆盖测试环境。Spring 框架本身提供了多种的方式来管理配置属性文件。Spring 3.1 之前可以使用 PropertyPlaceholderConfigurer。Spring 3.1 引入了新的环境（Environment）和概要信息（Profile）API，是一种更加灵活的处理不同环境和配置文件的方式。不过 Spring 这些配置管理方式的问题在于选择太多，让开发人员无所适从。Spring Boot 提供了一种统一的方式来管理应用的配置，允许开发人员使用属性文件、YAML 文件、环境变量和命令行参数来定义优先级不同的配置值。
+Spring Boot 所提供的配置优先级顺序比较复杂。按照优先级从高到低的顺序，具体的列表如下所示。</p>
+
+<ul>
+  <li>1.命令行参数。</li>
+  <li>2.通过 System.getProperties() 获取的 Java 系统参数。</li>
+  <li>3.操作系统环境变量。</li>
+  <li>4.从 java:comp/env 得到的 JNDI 属性。</li>
+  <li>5.通过 RandomValuePropertySource 生成的“random.*”属性。</li>
+  <li>6.应用 Jar 文件之外的属性文件。</li>
+  <li>7.应用 Jar 文件内部的属性文件。</li>
+  <li>8.在应用配置 Java 类（包含“@Configuration”注解的 Java 类）中通过“@PropertySource”注解声明的属性文件。</li>
+  <li>9.通过“SpringApplication.setDefaultProperties”声明的默认属性。</li>
+</ul>
+
+<p>Spring Boot 的这个配置优先级看似复杂，其实是很合理的。比如命令行参数的优先级被设置为最高。这样的好处是可以在测试或生产环境中快速地修改配置参数值，而不需要重新打包和部署应用。</p>
+
+<p>SpringApplication 类默认会把以“–”开头的命令行参数转化成应用中可以使用的配置参数，如 “–name=Alex” 会设置配置参数 “name” 的值为 “Alex”。如果不需要这个功能，可以通过<code class="highlighter-rouge"> “SpringApplication.setAddCommandLineProperties(false)”</code> 禁用解析命令行参数。</p>
+
+<p>先将刚才的项目打包,然后在生产jar包的同级目录添加application.properties</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd spring-boot-sample
+mvn clean package
+cd target
+echo user.name=demo from outer file &gt; application.properties
+java -jar com.baojian-1.0-SNAPSHOT.jar
+</code></pre></div></div>
+<p>PS: 我做测试时，外部文件无法加载覆盖内部文件，不知道什么情况，有股淡淡的忧伤。。</p>
+
+<h4 id="读取位置以及优先级">读取位置以及优先级</h4>
+
+<p>默认情况下,spring boot会从如下几个地方读取application.properties:</p>
+
+<ul>
+  <li>命令行参数</li>
+  <li>当前应用同级目录下的/config目录</li>
+  <li>当前应用的同级目录</li>
+  <li>classpath下的/config包</li>
+  <li>classpath</li>
+</ul>
+
+<p>如果存在相同的配置项,那么会按优先级覆盖,优先级按上面的顺序从高到低,即:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>命令行 &gt; /config目录 &gt; 当前目录 &gt; classpath:/config &gt; classpath
+</code></pre></div></div>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">辛保健</div>
+      <div class="bio">
+        <p>后端开发者，热爱技术，简单乐观爱创造</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/xinbaojian" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2015/05/14/profiles-setting-md.html" class="read-next-link"></a>
+        <section>
+          <span>Spring Boot 学习起步 四、Profiles配置</span>
+          <p>  Profiles 配置</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2015/05/14/spring-boot-hot-loading-md.html" class="read-next-link"></a>
+          <section>
+            <span>Spring Boot 学习起步 二，支持热加载</span>
+            <p>  支持热加载</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>谷梁祁承 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/xinbaojian">xinbaojian</a></section>
+  <section><a style="font-size:0.8rem;font-weight:100; text-decoration: none;" href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备18005655号-1</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

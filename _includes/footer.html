@@ -1,0 +1,23 @@
+<footer class="g-footer">
+  <section>{{ site.title }} ©
+  {% assign current = "now" | date: "%Y" | plus: 0%}
+  {% unless site.footer.since and site.footer.since == current %}
+    {{ site.footer.since }}
+    -
+  {% endunless %}
+  {{ current }}
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/xinbaojian">xinbaojian</a></section>
+  <section><a style="font-size:0.8rem;font-weight:100; text-decoration: none;" href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备18005655号-1</a></section>
+</footer>
+{% if site.baidu.analytics %}
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?{{ site.baidu.analytics }}";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+{%endif%}

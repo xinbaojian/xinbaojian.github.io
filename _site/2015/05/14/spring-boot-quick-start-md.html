@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot 学习起步 一、快速搭建 - 谷梁祁承</title>
+    <meta name="author"  content="辛保健">
+    <meta name="description" content="Spring Boot 学习起步 一、快速搭建">
+    <meta name="keywords"  content="技术, Java, Spring Boot">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Spring Boot 学习起步 一、快速搭建 - 谷梁祁承">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2015/05/14/spring-boot-quick-start-md.html">
+    <meta property="og:description" content="眼中总有光芒，活成想要的模样。">
+    <meta property="og:site_name" content="谷梁祁承">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#%E6%8A%80%E6%9C%AF" class="post-tag">技术</a>
+          
+            <a href="http://localhost:4000/tags#Java" class="post-tag">Java</a>
+          
+            <a href="http://localhost:4000/tags#Spring%20Boot" class="post-tag">Spring Boot</a>
+          
+        
+      </div>
+      <h1>Spring Boot 学习起步 一、快速搭建</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>Baojian</span>
+        <time class="post-meta-item" datetime="15-05-14"><i class="iconfont icon-date"></i>14 May 2015</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+    <h2 class="post-subtitle"> "Spring Boot"</h2>
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>快速搭建</p>
+</blockquote>
+
+<h3 id="第一步创建项目">第一步，创建项目</h3>
+
+<p>看看spring boot怎么以最简单的方式让程序跑起来的 而且还是一个web项目。</p>
+
+<p>首先 使用eclipse jee创建一个maven工程，一般的工程就可以（我用的是quickstart），工程就叫spring-boot-sample；</p>
+
+<h3 id="第二步添加spring-boot依赖">第二步,添加Spring Boot依赖</h3>
+
+<p>在pom.xml中引入<code class="highlighter-rouge">spring-boot-start-parent</code>，spring官方的解释叫什么<code class="highlighter-rouge">stater POMs</code>，它可以提供dependency management，
+也就是说依赖管理，应该是说工程需要依赖的jar包的管理，引入以后在申明其他dependency的时候就不需要version了，后面可以看到。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.0.1.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+</code></pre></div></div>
+<!--more-->
+<h3 id="第三步添加web工程依赖">第三步,添加Web工程依赖</h3>
+<p>因为我们开发的是web工程，所以需要在pom.xml中引入<code class="highlighter-rouge">spring-boot-starter-web</code>，
+spring官方解释说<code class="highlighter-rouge">spring-boot-starter-web</code>包含了<code class="highlighter-rouge">spring webmvc</code>和<code class="highlighter-rouge">tomcat</code>等web开发的特性。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre></div></div>
+
+<h3 id="第四步编写controller类">第四步,编写controller类</h3>
+<p>真正的程序开始啦，我们需要一个启动类 然后在这个启动类中申明让spring boot自动给我们配置spring需要的配置，比如component scan等；为了可以尽快让程序跑起来，我们使用spring官方的实例：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
+@EnableAutoConfiguration
+public class App {
+    @RequestMapping("/")
+    @ResponseBody
+    public String hello(){
+      return "Hello world!";
+    }
+
+    public static void main(String[] args) {
+      SpringApplication.run(App.class, args);
+    }
+}
+</code></pre></div></div>
+
+<h5 id="注解解释">注解解释：</h5>
+<blockquote>
+  <p>@EnableAutoConfiguration申明让spring boot自动给程序进行必要的配置；</p>
+</blockquote>
+
+<blockquote>
+  <p>@Controller表示这个一个controller类；</p>
+</blockquote>
+
+<blockquote>
+  <p>@RequestMapping(“/”) 表示通过/可以访问的方法；</p>
+</blockquote>
+
+<blockquote>
+  <p>@ResponseBody 表示将结果直接返回给调用着。</p>
+</blockquote>
+
+<h3 id="第五步运行项目">第五步，运行项目。</h3>
+
+<h5 id="第一种方式">第一种方式</h5>
+<p>spring-boot-maven-plugin提供了直接运行项目的插件，我们可以直接mvn spring-boot:run运行。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- Package as an executable JAR --&gt;  
+&lt;build&gt;  
+    &lt;plugins&gt;  
+        &lt;plugin&gt;  
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;  
+        &lt;/plugin&gt;  
+    &lt;/plugins&gt;  
+&lt;/build&gt;  
+</code></pre></div></div>
+
+<blockquote>
+  <p>mvn spring-boot:run</p>
+</blockquote>
+
+<h5 id="第二种方式">第二种方式</h5>
+
+<p>在App(Application)类中直接以<code class="highlighter-rouge">main</code>方法启动。(个人推荐)</p>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">辛保健</div>
+      <div class="bio">
+        <p>后端开发者，热爱技术，简单乐观爱创造</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/xinbaojian" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2015/05/14/spring-boot-hot-loading-md.html" class="read-next-link"></a>
+        <section>
+          <span>Spring Boot 学习起步 二，支持热加载</span>
+          <p>  支持热加载</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2015/05/14/learn-spring-side4-ready-01.html" class="read-next-link"></a>
+          <section>
+            <span>学习SpringSide4-环境准备</span>
+            <p>  环境准备</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>谷梁祁承 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/xinbaojian">xinbaojian</a></section>
+  <section><a style="font-size:0.8rem;font-weight:100; text-decoration: none;" href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备18005655号-1</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
