@@ -15,11 +15,13 @@ Ubuntu 16.04 开始不再使用initd管理系统，改用systemd.update-rc.d 以
 
 1.建立rc-local.service文件
 
-    sudo vim /etc/systemd/system/rc-local.service
+```sh
+sudo vim /etc/systemd/system/rc-local.service
+```
 
 2.将下列内容复制进rc-local.service文件
 
-```
+```sh
 [Unit]
 Description=/etc/rc.local Compatibility
 ConditionPathExists=/etc/rc.local
@@ -38,11 +40,13 @@ WantedBy=multi-user.target
 
 3.创建文件rc.local
 
-    sudo vim /etc/rc.local
+```sh
+sudo vim /etc/rc.local
+```
 
 4.将下列内容复制进rc.local文件
 
-```
+```sh
 #!/bin/sh -e
 #
 # rc.local
@@ -62,14 +66,19 @@ exit 0
 
 5.给rc.local加上权限,启用服务
 
+```sh
     sudo chmod +x /etc/rc.local
     sudo systemctl enable rc-local
+```
 
 6.启动服务并检查状态
-
-    sudo systemctl start rc-local.service
-    sudo systemctl status rc-local.service
+```sh
+sudo systemctl start rc-local.service
+sudo systemctl status rc-local.service
+```
 
 7.重启并检查test.log文件
 
-    cat /usr/local/test.log
+```sh
+cat /usr/local/test.log
+```
