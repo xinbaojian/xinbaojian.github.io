@@ -103,3 +103,5 @@ drop extension postgres_fdw;
 ```
 
 
+[引用](http://www.postgres.cn/docs/9.5/postgres-fdw.html)
+
