@@ -1,3 +1,12 @@
+---
+layout:     post
+title:      "Nginx location proxy_pass 后面的 url 加与不加 / 的区别"
+subtitle:   "\"Nginx location proxy_pass 后面的 url 加与不加 / 的区别\"" 
+author:     "xin.bj"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Spring Boot
+---
 
 # Nginx location proxy_pass 后面的 url 加与不加 / 的区别.
 
