@@ -1,3 +1,12 @@
+---
+layout:     post
+title:      "Spring Boot2.X 集成Redis"
+subtitle:   "\"Spring Boot2.X 集成Redis\"" 
+author:     "xin.bj"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Spring Boot
+---
 # Spring Boot2.X 集成Redis
 
 引入jar包
