@@ -106,4 +106,6 @@ on reset3T()
 end reset3T
 ```
 
+可以使用脚本编辑器打开执行，也可以使用`osascript /path/to/Reset3t.applescript`命令执行.
+
 > 注意： Studio 3T for Mac 重置后，需要重启电脑。重启之前，不要重新打开`Studio 3T for Mac`，否则重置会失败。

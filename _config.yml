@@ -3,6 +3,7 @@ title: '谷梁祁承'
 description: '眼中总有光芒，活成想要的模样。'
 keyword: '谷梁祁承'
 url: 'https://xinbaojian.xyz' # your host
+timezone: Asia/Shanghai
 
 # if you don't need baseurl, you should leave this value blank.
 baseurl: ''
@@ -84,3 +85,4 @@ permalink: /:year/:month/:day/:title.html
 
 # Plugins
 plugins: [jekyll-paginate]
+
