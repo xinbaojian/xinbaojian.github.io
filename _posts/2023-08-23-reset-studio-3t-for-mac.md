@@ -2,7 +2,7 @@
 layout:     post
 title:      "Studio 3T 重置试用，实现无限期免费试用"
 subtitle:   " \"Studio3T for Mac\""
-date:       2023-08-23 11:04:13
+date:       2023-08-23 11:04:13 +08:00
 author:     "Baojian"
 header-img: "img/post-bg-2015.jpg"
 tags:
